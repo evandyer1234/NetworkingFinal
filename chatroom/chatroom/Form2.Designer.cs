@@ -73,6 +73,7 @@ namespace chatroom
             this.button1.TabIndex = 3;
             this.button1.Text = "Leave";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Leavebtn);
             // 
             // Form2
             // 
@@ -86,7 +87,6 @@ namespace chatroom
             this.Controls.Add(this.LB);
             this.Name = "Form2";
             this.Text = "Form2";
-            this.Click += new System.EventHandler(this.Leavebtn);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,68 +10,118 @@ using System.Windows.Forms;
 
 namespace chatroom
 {
-    public partial class Form1 : Form
-    {        
+    public struct chatinfo
+    {
+        //user number
         public int us;
+        //connect to this user
         public int con;
+        //port number
+        public decimal portnum;
+        //username
+        public string un;      
+    }
 
+    public partial class Form1 : Form
+    {
+        public chatinfo ci = new chatinfo();
+        
         public Form1()
         {
             InitializeComponent();
+
+            //default ui for port selection, portnum changed on portui value changed
+            portui.Value = 8080;
+            ci.portnum = 8080;
         }
 
         private void enterchat(object sender, EventArgs e)
         {
             if (TB.Text != "")
             {
+                //sets up form2 (actual chatroom)
                 Form2 f2 = new Form2();
-                f2.un = TB.Text;
-                f2.user = us;
-                f2.con = con;
+                ci.un = TB.Text;
+                f2.ci = ci;
+                      
                 f2.Show();
+            }
+        }
+        
+        //changes enabled buttons so the user can't connect to themselves
+        public void buttonreset(int i)
+        {
+            radioButton5.Enabled = true;
+            radioButton8.Enabled = true;
+            radioButton6.Enabled = true;
+            radioButton7.Enabled = true;
+
+            if (i == 1)
+            {
+                radioButton5.Enabled = false;
+            }
+            else if (i == 2)
+            {
+                radioButton6.Enabled = false;
+            }
+            else if (i == 3)
+            {
+                radioButton7.Enabled = false;
+            }
+            else if (i == 4)
+            {
+                radioButton8.Enabled = false;
             }
         }
 
         private void rbcheck1(object sender, EventArgs e)
         {
-            us = 1;
+            ci.us = 1;
+            buttonreset(1);
+            
         }
 
         private void rbcheck2(object sender, EventArgs e)
         {
-            us = 2;
+            ci.us = 2;
+            buttonreset(2);
         }
 
         private void rbcheck3(object sender, EventArgs e)
         {
-            us = 3;
+            ci.us = 3;
+            buttonreset(3);
         }
 
         private void rbcheck4(object sender, EventArgs e)
         {
-            us = 4;
+            ci.us = 4;
+            buttonreset(4);
         }
 
         private void cn1(object sender, EventArgs e)
         {
-            con = 1;
+            ci.con = 1;
         }
 
         private void cn2(object sender, EventArgs e)
         {
-            con = 2;
+            ci.con = 2;
         }
 
         private void cn3(object sender, EventArgs e)
         {
-            con = 3;
+            ci.con = 3;
         }
 
         private void cn4(object sender, EventArgs e)
         {
-            con = 4;
+            ci.con = 4;
         }
 
-       
+        private void portchange(object sender, EventArgs e)
+        {
+            ci.portnum = portui.Value;
+        }
     }
 }
