@@ -120,7 +120,7 @@ namespace chatroom
             {
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndSend(ar);
-                Console.WriteLine("SEND: {0}, {1}", bytes, text);
+                //Console.WriteLine("SEND: {0}, {1}", bytes, text);
             }, state);
         }
 
