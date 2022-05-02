@@ -30,7 +30,7 @@ namespace chatroom
                 f2.un = TB.Text;
                 f2.user = us;
                 f2.con = con;
-                f2.form1 = this;
+               
                 form2 = f2;
                 f2.Show();
             }
