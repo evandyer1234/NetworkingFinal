@@ -17,7 +17,7 @@ namespace chatroom
     public partial class Form2 : Form
     {
 
-        public chatinfo ci = new chatinfo();
+        public chatinfo ci;
 
         //UdpClient _server = null;
         //IPEndPoint _client = null;
@@ -28,7 +28,7 @@ namespace chatroom
         {
             InitializeComponent();
 
-            backgroundWorker1.DoWork += new DoWorkEventHandler(bg_work);
+            
 
             if (ci.isServer)
             {
@@ -37,7 +37,11 @@ namespace chatroom
             }
            
             c.Client("127.0.0.1", decimal.ToInt32(ci.portnum));
-            c.Send(ci.un + " Joined");
+
+            //backgroundWorker1.DoWork += new DoWorkEventHandler(bg_work);
+
+            backgroundWorker1.RunWorkerAsync();
+            //c.Send(ci.un + " Joined");
 
             //Console.ReadKey();
         }
@@ -70,7 +74,11 @@ namespace chatroom
             //string msg = Encoding.ASCII.GetString(data, 0, data.Length);
 
             //LB.Items.Add(msg);
-            LB.Items.Add(p);
+            if (p != "")
+            {
+                LB.Invoke(new MethodInvoker(delegate { LB.Items.Add(p); }));
+            }
+            
         }
 
         private void Leavebtn(object sender, EventArgs e)
@@ -81,8 +89,33 @@ namespace chatroom
 
         private void bg_work(object sender, DoWorkEventArgs e)
         {
-            string s = c.Receive();
+            BackgroundWorker worker = sender as BackgroundWorker;
+            //string s = c.Receive();
+            //string s = "yoyo";
+            //AddMessage(s);
+
+
+            //e.Result = messagetest();
+            Thread.Sleep(500);
+           // Task t = Task.Run(() => {
+                e.Result = c.Receive();
+           // });
+           // t.Wait();
+            AddMessage(e.Result.ToString());
+            Thread.Sleep(500);
+        }
+
+        public bool messagetest()
+        {
+            string s = "yoyo";
             AddMessage(s);
+            return true;
+        }
+
+        private void bg_reset(object sender, RunWorkerCompletedEventArgs e)
+        {
+            
+            backgroundWorker1.RunWorkerAsync();
         }
     }
 }

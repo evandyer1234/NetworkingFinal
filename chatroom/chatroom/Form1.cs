@@ -32,8 +32,8 @@ namespace chatroom
             InitializeComponent();
 
             //default ui for port selection, portnum changed on portui value changed
-            portui.Value = 8080;
-            ci.portnum = 8080;
+            portui.Value = 27000;
+            ci.portnum = 27000;
         }
 
         private void enterchat(object sender, EventArgs e)

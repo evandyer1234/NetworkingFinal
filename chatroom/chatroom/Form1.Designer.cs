@@ -39,13 +39,13 @@ namespace chatroom
             this.label1 = new System.Windows.Forms.Label();
             this.TB = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.hostbox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.portui = new System.Windows.Forms.NumericUpDown();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.hostbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).BeginInit();
@@ -176,6 +176,16 @@ namespace chatroom
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Connect To";
             // 
+            // hostbox
+            // 
+            this.hostbox.AutoSize = true;
+            this.hostbox.Location = new System.Drawing.Point(6, 225);
+            this.hostbox.Name = "hostbox";
+            this.hostbox.Size = new System.Drawing.Size(100, 19);
+            this.hostbox.TabIndex = 13;
+            this.hostbox.Text = "Are You Host?";
+            this.hostbox.UseVisualStyleBackColor = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -191,7 +201,7 @@ namespace chatroom
             // 
             this.portui.Location = new System.Drawing.Point(6, 178);
             this.portui.Maximum = new decimal(new int[] {
-            9999,
+            99999,
             0,
             0,
             0});
@@ -264,16 +274,6 @@ namespace chatroom
             this.radioButton7.Text = "User 3";
             this.radioButton7.UseVisualStyleBackColor = false;
             this.radioButton7.Click += new System.EventHandler(this.cn3);
-            // 
-            // hostbox
-            // 
-            this.hostbox.AutoSize = true;
-            this.hostbox.Location = new System.Drawing.Point(6, 225);
-            this.hostbox.Name = "hostbox";
-            this.hostbox.Size = new System.Drawing.Size(100, 19);
-            this.hostbox.TabIndex = 13;
-            this.hostbox.Text = "Are You Host?";
-            this.hostbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

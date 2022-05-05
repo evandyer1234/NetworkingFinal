@@ -24,6 +24,7 @@ namespace chatroom
 
         public void Server(string address, int port)
         {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
             _socket.Bind(new IPEndPoint(IPAddress.Parse(address), port));
             Receive();
@@ -31,6 +32,7 @@ namespace chatroom
 
         public void Client(string address, int port)
         {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket.Connect(IPAddress.Parse(address), port);
             Receive();
         }
@@ -42,21 +44,24 @@ namespace chatroom
             {
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndSend(ar);
-                Console.WriteLine("SEND: {0}, {1}", bytes, text);
+                //Console.WriteLine("SEND: {0}, {1}", bytes, text);
             }, state);
         }
-
         public string Receive()
         {
-            string s = "oi";
+            string s = "";
 
             _socket.BeginReceiveFrom(state.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv = (ar) =>
             {
-                State so = (State)ar.AsyncState;
-                int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
-                _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
-                Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
-                s = epFrom.ToString();
+                try
+                {
+                    State so = (State)ar.AsyncState;
+                    int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
+                    _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
+                    //Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
+                    s = epFrom.ToString();
+                }
+                catch { }
             }, state);
             return s;
         }

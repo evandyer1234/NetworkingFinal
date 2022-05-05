@@ -81,6 +81,7 @@ namespace chatroom
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg_work);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bg_reset);
             // 
             // Form2
             // 
