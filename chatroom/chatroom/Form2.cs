@@ -11,21 +11,35 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+//https://gist.github.com/darkguy2008/413a6fea3a5b4e67e5e0d96f750088a9
 namespace chatroom
 {
     public partial class Form2 : Form
     {
+
         public chatinfo ci = new chatinfo();
 
-        UdpClient _server = null;
-        IPEndPoint _client = null;
+        //UdpClient _server = null;
+        //IPEndPoint _client = null;
+        UDPSocket s = new UDPSocket();
+        UDPSocket c = new UDPSocket();
 
         public Form2()
         {
             InitializeComponent();
-            _server = new UdpClient("127.0.0.1", 16000);
-            
-            _client = new IPEndPoint(IPAddress.Any, 0);         
+
+            backgroundWorker1.DoWork += new DoWorkEventHandler(bg_work);
+
+            if (ci.isServer)
+            {
+               
+                s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
+            }
+           
+            c.Client("127.0.0.1", decimal.ToInt32(ci.portnum));
+            c.Send(ci.un + " Joined");
+
+            //Console.ReadKey();
         }
 
         private void EnterPressed(object sender, EventArgs e)
@@ -43,7 +57,8 @@ namespace chatroom
             if (t == ci.con || t == ci.us)
             {
                 string p = ci.un + ": " + tb.Text;
-                AddMessage(p);
+                //AddMessage(p);
+                c.Send(p);
             }
         }
          
@@ -60,8 +75,14 @@ namespace chatroom
 
         private void Leavebtn(object sender, EventArgs e)
         {          
-            _server.Close();
+            //_server.Close();
             this.Close();   
+        }
+
+        private void bg_work(object sender, DoWorkEventArgs e)
+        {
+            string s = c.Receive();
+            AddMessage(s);
         }
     }
 }

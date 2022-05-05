@@ -19,7 +19,8 @@ namespace chatroom
         //port number
         public decimal portnum;
         //username
-        public string un;      
+        public string un;
+        public bool isServer;
     }
 
     public partial class Form1 : Form
@@ -42,6 +43,7 @@ namespace chatroom
                 //sets up form2 (actual chatroom)
                 Form2 f2 = new Form2();
                 ci.un = TB.Text;
+                ci.isServer = hostbox.Checked;
                 f2.ci = ci;
                       
                 f2.Show();

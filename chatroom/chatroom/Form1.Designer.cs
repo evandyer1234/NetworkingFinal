@@ -45,6 +45,7 @@ namespace chatroom
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.hostbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).BeginInit();
@@ -161,6 +162,7 @@ namespace chatroom
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox2.Controls.Add(this.hostbox);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.portui);
             this.groupBox2.Controls.Add(this.radioButton5);
@@ -169,7 +171,7 @@ namespace chatroom
             this.groupBox2.Controls.Add(this.radioButton7);
             this.groupBox2.Location = new System.Drawing.Point(275, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(171, 206);
+            this.groupBox2.Size = new System.Drawing.Size(171, 260);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Connect To";
@@ -263,6 +265,16 @@ namespace chatroom
             this.radioButton7.UseVisualStyleBackColor = false;
             this.radioButton7.Click += new System.EventHandler(this.cn3);
             // 
+            // hostbox
+            // 
+            this.hostbox.AutoSize = true;
+            this.hostbox.Location = new System.Drawing.Point(6, 225);
+            this.hostbox.Name = "hostbox";
+            this.hostbox.Size = new System.Drawing.Size(100, 19);
+            this.hostbox.TabIndex = 13;
+            this.hostbox.Text = "Are You Host?";
+            this.hostbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -302,6 +314,7 @@ namespace chatroom
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.NumericUpDown portui;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox hostbox;
     }
 }
 
