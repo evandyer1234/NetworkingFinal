@@ -1,0 +1,24 @@
+Clients log on using TCP.
+List of other clients sent using TCP.
+Clients can select another user to chat with using TCP.
+TCP commands include request for chat and accept or reject chat.
+
+Communication between clients using UDP send to and receive from.
+Project includes a client, server and database to keep track of users.
+
+struct
+Msg
+ID
+Receiver //Partner
+
+//Server
+Every new user gets an 'all online users' list through TCP
+The initial message from each user, without a partner, 
+Is a chat request containing an id,
+Read as a socket by the server,
+Who sends the request to the appopriate user
+
+//Client
+C# gets a client list on Logon, sends a TCP chat request to one of the users through the server
+Other client accepts request
+UDP communication back and forth

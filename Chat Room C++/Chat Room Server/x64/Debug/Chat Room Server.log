@@ -1,0 +1,5 @@
+﻿  Chat Room Server.cpp
+C:\Users\Administrator\Documents\CPET222 work\JustinBugley_Lab05\Chat Room\Chat Room Server\Chat Room Server.cpp(22,9): warning C4068: unknown pragma 'pop'
+C:\Users\Administrator\Documents\CPET222 work\JustinBugley_Lab05\Chat Room\Chat Room Server\Chat Room Server.cpp(26,7): warning C4101: 'msg': unreferenced local variable
+C:\Users\Administrator\Documents\CPET222 work\JustinBugley_Lab05\Chat Room\Chat Room Server\Chat Room Server.cpp(35,7): warning C4101: 'buf': unreferenced local variable
+  Chat Room Server.vcxproj -> C:\Users\Administrator\Documents\CPET222 work\JustinBugley_Lab05\Chat Room\x64\Debug\Chat Room Server.exe
