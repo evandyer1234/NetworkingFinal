@@ -20,6 +20,7 @@ namespace chatroom
         public decimal portnum;
         //username
         public string un;
+        //is the client also the server
         public bool isServer;
     }
 
@@ -80,8 +81,7 @@ namespace chatroom
         private void rbcheck1(object sender, EventArgs e)
         {
             ci.us = 1;
-            buttonreset(1);
-            
+            buttonreset(1);       
         }
 
         private void rbcheck2(object sender, EventArgs e)

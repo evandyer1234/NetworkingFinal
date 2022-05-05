@@ -45,46 +45,26 @@ namespace chatroom
             c.f2 = this;
             c.Client("127.0.0.1", decimal.ToInt32(ch.portnum));
             
-            
-
             backgroundWorker1.RunWorkerAsync();
-            
-
             
         }
 
         private void EnterPressed(object sender, EventArgs e)
-        {   
+        {
             if (tb.Text != "")
             {
-                CreateMessage(ci.us, tb.Text);
+                c.Send(ci.un + ": " + tb.Text);
                 tb.Text = "";
             }
         }
 
-        //builds the message that will be displayed
-        public void CreateMessage(int t, string s)
-        {
-            if (t == ci.con || t == ci.us)
-            {
-               
-                
-                c.Send(ci.un + ": " + tb.Text);
-            }
-        }
-         
         //should send the message to the server and display it for both clients 
         public void AddMessage(string p)
         {
-           
-
-            
             if (p != "")
             {
-                LB.Invoke(new MethodInvoker(delegate { LB.Items.Add(p); }));
-                
-            }
-            
+                LB.Invoke(new MethodInvoker(delegate { LB.Items.Add(p); }));               
+            }   
         }
 
         private void Leavebtn(object sender, EventArgs e)
@@ -96,17 +76,12 @@ namespace chatroom
         private void bg_work(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            
-
-
             //e.Result = messagetest();
             
             //Byte[] receiveBytes = udpClient.Receive(ref epFrom);
             //string returnData = Encoding.ASCII.GetString(receiveBytes);
             //AddMessage(returnData);
         }
-
-        
 
         private void bg_reset(object sender, RunWorkerCompletedEventArgs e)
         {

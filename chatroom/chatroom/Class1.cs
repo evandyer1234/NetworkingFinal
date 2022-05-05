@@ -28,8 +28,7 @@ namespace chatroom
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
             _socket.Bind(new IPEndPoint(IPAddress.Parse(address), port));
-            Receive();
-            
+            Receive();          
         }
 
         public void Client(string address, int port)
@@ -45,8 +44,7 @@ namespace chatroom
             _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (ar) =>
             {
                 State so = (State)ar.AsyncState;
-                int bytes = _socket.EndSend(ar);
-                
+                int bytes = _socket.EndSend(ar);               
             }, state);
         }
         private void Receive()
