@@ -53,6 +53,7 @@ namespace chatroom
         {
             if (tb.Text != "")
             {
+                //var b = {"ID" : ci.un.ToString(), "msg" : }
                 c.Send(ci.un + ": " + tb.Text);
                 tb.Text = "";
             }

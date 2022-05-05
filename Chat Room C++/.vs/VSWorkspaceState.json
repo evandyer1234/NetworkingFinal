@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Chat Room TCP Client"
+    "\\Chat Room TCP Client",
+    "\\Chat Room TCP Server"
   ],
-  "SelectedNode": "\\Chat Room TCP Client\\Chat Room TCP Client.cpp",
+  "SelectedNode": "\\Chat Room TCP Server\\Chat Room TCP Server.cpp",
   "PreviewInSolutionExplorer": false
 }
