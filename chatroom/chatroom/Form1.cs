@@ -41,9 +41,10 @@ namespace chatroom
             if (TB.Text != "")
             {
                 //sets up form2 (actual chatroom)
-                Form2 f2 = new Form2();
                 ci.un = TB.Text;
                 ci.isServer = hostbox.Checked;
+                Form2 f2 = new Form2(ci);
+                
                 f2.ci = ci;
                       
                 f2.Show();

@@ -36,3 +36,4 @@ E:\Evan\Documents\GitHub\NetworkingFinal\chatroom\chatroom\bin\Debug\net5.0-wind
 E:\Evan\Documents\GitHub\NetworkingFinal\chatroom\chatroom\bin\Debug\net5.0-windows\ref\chatroom.dll
 E:\Evan\Documents\GitHub\NetworkingFinal\chatroom\chatroom\bin\Debug\net5.0-windows\chatroom.pdb
 E:\Evan\Documents\GitHub\NetworkingFinal\chatroom\chatroom\obj\Debug\net5.0-windows\chatroom.genruntimeconfig.cache
+E:\Evan\Documents\GitHub\NetworkingFinal\chatroom\chatroom\obj\Debug\net5.0-windows\chatroom.csproj.AssemblyReference.cache

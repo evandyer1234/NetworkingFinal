@@ -19,26 +19,33 @@ namespace chatroom
 
         public chatinfo ci;
 
-        //UdpClient _server = null;
-        //IPEndPoint _client = null;
-        UDPSocket s = new UDPSocket();
-        UDPSocket c = new UDPSocket();
+        
+        UDPSocket s;
+        UDPSocket c;
+        UdpClient udpClient;
+        public IPEndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
 
-        public Form2()
+        public Form2(chatinfo ch)
         {
             InitializeComponent();
 
-            
-
-            if (ci.isServer)
-            {
-               
-                s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
-            }
+            s = new UDPSocket();
            
-            c.Client("127.0.0.1", decimal.ToInt32(ci.portnum));
-
-            //backgroundWorker1.DoWork += new DoWorkEventHandler(bg_work);
+            s.f2 = this;
+            udpClient = new UdpClient(decimal.ToInt32(ch.portnum));
+            
+            if (ch.isServer)
+            {
+                //tb.Text = "ser";
+                //s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
+                s.Server("127.0.0.1", decimal.ToInt32(ch.portnum));
+            }
+            c = new UDPSocket();
+            
+            c.f2 = this;
+            c.Client("127.0.0.1", decimal.ToInt32(ch.portnum));
+            //c.Send("hey");
+            
 
             backgroundWorker1.RunWorkerAsync();
             //c.Send(ci.un + " Joined");
@@ -60,57 +67,55 @@ namespace chatroom
         {
             if (t == ci.con || t == ci.us)
             {
-                string p = ci.un + ": " + tb.Text;
-                //AddMessage(p);
-                c.Send(p);
+               
+                
+                c.Send(ci.un + ": " + tb.Text);
             }
         }
          
         //should send the message to the server and display it for both clients 
         public void AddMessage(string p)
         {
-            //_server.Send(Encoding.ASCII.GetBytes(p), p.Length);
-            //byte[] data = _server.Receive(ref _client);
-            //string msg = Encoding.ASCII.GetString(data, 0, data.Length);
+           
 
             //LB.Items.Add(msg);
             if (p != "")
             {
                 LB.Invoke(new MethodInvoker(delegate { LB.Items.Add(p); }));
+                //LB.Items.Add(p);
             }
             
         }
 
         private void Leavebtn(object sender, EventArgs e)
         {          
-            //_server.Close();
+            s._socket.Close();
             this.Close();   
         }
 
         private void bg_work(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            //string s = c.Receive();
-            //string s = "yoyo";
-            //AddMessage(s);
+            
 
 
             //e.Result = messagetest();
-            Thread.Sleep(500);
-           // Task t = Task.Run(() => {
-                e.Result = c.Receive();
-           // });
-           // t.Wait();
-            AddMessage(e.Result.ToString());
-            Thread.Sleep(500);
+            //Thread.Sleep(100);
+            // Task t = Task.Run(() => {
+            //if (ci.isServer)
+            //{
+            //e.Result = s.Receive();
+            //}
+            // });
+            // t.Wait();
+            //AddMessage(e.Result.ToString());
+            //Thread.Sleep(500);
+            Byte[] receiveBytes = udpClient.Receive(ref epFrom);
+            string returnData = Encoding.ASCII.GetString(receiveBytes);
+            AddMessage(returnData);
         }
 
-        public bool messagetest()
-        {
-            string s = "yoyo";
-            AddMessage(s);
-            return true;
-        }
+        
 
         private void bg_reset(object sender, RunWorkerCompletedEventArgs e)
         {
