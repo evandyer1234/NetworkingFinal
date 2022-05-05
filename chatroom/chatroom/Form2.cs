@@ -32,11 +32,11 @@ namespace chatroom
             s = new UDPSocket();
            
             s.f2 = this;
-            udpClient = new UdpClient(decimal.ToInt32(ch.portnum));
+            //udpClient = new UdpClient(decimal.ToInt32(ch.portnum));
             
             if (ch.isServer)
             {
-                //tb.Text = "ser";
+                
                 //s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
                 s.Server("127.0.0.1", decimal.ToInt32(ch.portnum));
             }
@@ -44,13 +44,13 @@ namespace chatroom
             
             c.f2 = this;
             c.Client("127.0.0.1", decimal.ToInt32(ch.portnum));
-            //c.Send("hey");
+            
             
 
             backgroundWorker1.RunWorkerAsync();
-            //c.Send(ci.un + " Joined");
+            
 
-            //Console.ReadKey();
+            
         }
 
         private void EnterPressed(object sender, EventArgs e)
@@ -78,11 +78,11 @@ namespace chatroom
         {
            
 
-            //LB.Items.Add(msg);
+            
             if (p != "")
             {
                 LB.Invoke(new MethodInvoker(delegate { LB.Items.Add(p); }));
-                //LB.Items.Add(p);
+                
             }
             
         }
@@ -100,19 +100,10 @@ namespace chatroom
 
 
             //e.Result = messagetest();
-            //Thread.Sleep(100);
-            // Task t = Task.Run(() => {
-            //if (ci.isServer)
-            //{
-            //e.Result = s.Receive();
-            //}
-            // });
-            // t.Wait();
-            //AddMessage(e.Result.ToString());
-            //Thread.Sleep(500);
-            Byte[] receiveBytes = udpClient.Receive(ref epFrom);
-            string returnData = Encoding.ASCII.GetString(receiveBytes);
-            AddMessage(returnData);
+            
+            //Byte[] receiveBytes = udpClient.Receive(ref epFrom);
+            //string returnData = Encoding.ASCII.GetString(receiveBytes);
+            //AddMessage(returnData);
         }
 
         
