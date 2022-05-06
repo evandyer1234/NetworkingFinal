@@ -39,6 +39,7 @@ namespace chatroom
             this.label1 = new System.Windows.Forms.Label();
             this.TB = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.port2 = new System.Windows.Forms.NumericUpDown();
             this.hostbox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.portui = new System.Windows.Forms.NumericUpDown();
@@ -46,8 +47,14 @@ namespace chatroom
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.UserBox = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.messbox = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.port2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +169,7 @@ namespace chatroom
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox2.Controls.Add(this.port2);
             this.groupBox2.Controls.Add(this.hostbox);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.portui);
@@ -175,6 +183,28 @@ namespace chatroom
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Connect To";
+            // 
+            // port2
+            // 
+            this.port2.Location = new System.Drawing.Point(6, 196);
+            this.port2.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.port2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.port2.Name = "port2";
+            this.port2.Size = new System.Drawing.Size(120, 23);
+            this.port2.TabIndex = 14;
+            this.port2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // hostbox
             // 
@@ -275,12 +305,64 @@ namespace chatroom
             this.radioButton7.UseVisualStyleBackColor = false;
             this.radioButton7.Click += new System.EventHandler(this.cn3);
             // 
+            // UserBox
+            // 
+            this.UserBox.FormattingEnabled = true;
+            this.UserBox.ItemHeight = 15;
+            this.UserBox.Location = new System.Drawing.Point(505, 24);
+            this.UserBox.Name = "UserBox";
+            this.UserBox.Size = new System.Drawing.Size(252, 169);
+            this.UserBox.TabIndex = 11;
+            this.UserBox.DoubleClick += new System.EventHandler(this.requestUser);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(505, 215);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Join";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.refresh);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(505, 256);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Accept";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.YesButton);
+            // 
+            // messbox
+            // 
+            this.messbox.Location = new System.Drawing.Point(46, 366);
+            this.messbox.Name = "messbox";
+            this.messbox.Size = new System.Drawing.Size(100, 23);
+            this.messbox.TabIndex = 14;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(180, 366);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "enter";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.bp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.messbox);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.UserBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.testlabel);
@@ -291,6 +373,7 @@ namespace chatroom
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.port2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -315,6 +398,12 @@ namespace chatroom
         private System.Windows.Forms.NumericUpDown portui;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox hostbox;
+        private System.Windows.Forms.NumericUpDown port2;
+        private System.Windows.Forms.ListBox UserBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox messbox;
+        private System.Windows.Forms.Button button3;
     }
 }
 

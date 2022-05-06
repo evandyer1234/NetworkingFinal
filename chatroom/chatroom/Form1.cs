@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace chatroom
 {
@@ -18,16 +21,23 @@ namespace chatroom
         public int con;
         //port number
         public decimal portnum;
+        public decimal portnum2;
         //username
         public string un;
         //is the client also the server
         public bool isServer;
     }
+    struct idpair
+    {
+        Socket socket;
+        string id;
+    };
+
 
     public partial class Form1 : Form
     {
         public chatinfo ci = new chatinfo();
-        
+        UDPSocket s;
         public Form1()
         {
             InitializeComponent();
@@ -35,14 +45,23 @@ namespace chatroom
             //default ui for port selection, portnum changed on portui value changed
             portui.Value = 27000;
             ci.portnum = 27000;
+            port2.Value = 26000;
+            ci.portnum2 = 26000;
+            
         }
 
+
+        public void Adduser(string p)
+        {
+            UserBox.Invoke(new MethodInvoker(delegate { UserBox.Items.Add(p); }));
+        }
         private void enterchat(object sender, EventArgs e)
         {
             if (TB.Text != "")
             {
                 //sets up form2 (actual chatroom)
                 ci.un = TB.Text;
+                ci.portnum2 = port2.Value;
                 ci.isServer = hostbox.Checked;
                 Form2 f2 = new Form2(ci);
                 
@@ -125,6 +144,31 @@ namespace chatroom
         private void portchange(object sender, EventArgs e)
         {
             ci.portnum = portui.Value;
+        }
+
+        private void refresh(object sender, EventArgs e)
+        {
+            s = new UDPSocket();
+            s.f1 = this;
+            s.ClientTcp("127.0.0.3", 3399);
+            
+            s.Send(TB.Text + '\0');
+        }
+
+        private void requestUser(object sender, EventArgs e)
+        {
+            s.Send(UserBox.SelectedItem.ToString());
+            Adduser(UserBox.SelectedItem.ToString());
+        }
+
+        private void YesButton(object sender, EventArgs e)
+        {
+            s.Send('Y'.ToString());
+        }
+
+        private void bp(object sender, EventArgs e)
+        {
+            s.Send(messbox.Text + '\0');
         }
     }
 }

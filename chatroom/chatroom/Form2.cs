@@ -22,7 +22,7 @@ namespace chatroom
         
         UDPSocket s;
         UDPSocket c;
-        UdpClient udpClient;
+        //UdpClient udpClient;
         public IPEndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
 
         public Form2(chatinfo ch)
@@ -34,16 +34,15 @@ namespace chatroom
             s.f2 = this;
             //udpClient = new UdpClient(decimal.ToInt32(ch.portnum));
             
-            if (ch.isServer)
-            {
+            
                 
                 //s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
-                s.Server("127.0.0.1", decimal.ToInt32(ch.portnum));
-            }
+            s.Server("127.0.0.3", decimal.ToInt32(ch.portnum2));
+            
             c = new UDPSocket();
             
             c.f2 = this;
-            c.Client("127.0.0.1", decimal.ToInt32(ch.portnum));
+            c.Client("127.0.0.3", decimal.ToInt32(ch.portnum));
             
             backgroundWorker1.RunWorkerAsync();
             
@@ -55,6 +54,7 @@ namespace chatroom
             {
                 //var b = {"ID" : ci.un.ToString(), "msg" : }
                 c.Send(ci.un + ": " + tb.Text);
+                AddMessage(ci.un + ": " + tb.Text);
                 tb.Text = "";
             }
         }

@@ -17,6 +17,7 @@ namespace chatroom
         public EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
         private AsyncCallback recv = null;
         public Form2 f2;
+        public Form1 f1;
 
         public class State
         {
@@ -37,6 +38,12 @@ namespace chatroom
             _socket.Connect(IPAddress.Parse(address), port);
             Receive();
         }
+        public void ClientTcp(string address, int port)
+        {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.Connect(IPAddress.Parse(address), port);
+            Receive();
+        }
 
         public void Send(string text)
         {
@@ -54,8 +61,17 @@ namespace chatroom
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
                 _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
-                Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
-                f2.AddMessage(Encoding.ASCII.GetString(so.buffer, 0, bytes));
+                //Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
+                if (f2 != null)
+                {
+                    f2.AddMessage(Encoding.ASCII.GetString(so.buffer, 0, bytes));
+                }
+                else if (f1 != null)
+                {
+                    
+                    f1.Adduser(Encoding.ASCII.GetString(so.buffer, 0, bytes));
+                    //f1.Adduser(bytes.ToString());
+                }
             }, state);
         }
 
