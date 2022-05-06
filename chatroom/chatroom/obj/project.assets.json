@@ -8,25 +8,27 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Evan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\NHTI\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Evan\\Documents\\GitHub\\NetworkingFinal\\chatroom\\chatroom\\chatroom.csproj",
+      "projectUniqueName": "T:\\Ed\\NetworkingFinal-main\\chatroom\\chatroom\\chatroom.csproj",
       "projectName": "chatroom",
-      "projectPath": "E:\\Evan\\Documents\\GitHub\\NetworkingFinal\\chatroom\\chatroom\\chatroom.csproj",
-      "packagesPath": "C:\\Users\\Evan\\.nuget\\packages\\",
-      "outputPath": "E:\\Evan\\Documents\\GitHub\\NetworkingFinal\\chatroom\\chatroom\\obj\\",
+      "projectPath": "T:\\Ed\\NetworkingFinal-main\\chatroom\\chatroom\\chatroom.csproj",
+      "packagesPath": "C:\\Users\\NHTI\\.nuget\\packages\\",
+      "outputPath": "T:\\Ed\\NetworkingFinal-main\\chatroom\\chatroom\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Evan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\NHTI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
@@ -68,7 +70,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

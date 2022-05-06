@@ -10,13 +10,15 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text.Json;
+
 
 namespace chatroom
 {
     public struct chatinfo
     {
         //user number
-        public int us;
+        //public int us;
         //connect to this user
         public int con;
         //port number
@@ -25,7 +27,7 @@ namespace chatroom
         //username
         public string un;
         //is the client also the server
-        public bool isServer;
+        //public bool isServer;
     }
     struct idpair
     {
@@ -33,10 +35,21 @@ namespace chatroom
         string id;
     };
 
+    [Serializable]
+    public unsafe struct DATA
+    {
+        public string ID;
+        public string partnerID;
+        public string buf;
+
+    };
 
     public partial class Form1 : Form
     {
+        DATA msg;
+
         public chatinfo ci = new chatinfo();
+
         UDPSocket s;
         public Form1()
         {
@@ -47,9 +60,7 @@ namespace chatroom
             ci.portnum = 27000;
             port2.Value = 26000;
             ci.portnum2 = 26000;
-            
         }
-
 
         public void Adduser(string p)
         {
@@ -61,98 +72,46 @@ namespace chatroom
             {
                 //sets up form2 (actual chatroom)
                 ci.un = TB.Text;
+                ci.portnum = portui.Value;
                 ci.portnum2 = port2.Value;
-                ci.isServer = hostbox.Checked;
-                Form2 f2 = new Form2(ci);
                 
+                Form2 f2 = new Form2(ci);
+
                 f2.ci = ci;
-                      
+
                 f2.Show();
             }
         }
-        
-        //changes enabled buttons so the user can't connect to themselves
-        public void buttonreset(int i)
-        {
-            radioButton5.Enabled = true;
-            radioButton8.Enabled = true;
-            radioButton6.Enabled = true;
-            radioButton7.Enabled = true;
 
-            if (i == 1)
-            {
-                radioButton5.Enabled = false;
-            }
-            else if (i == 2)
-            {
-                radioButton6.Enabled = false;
-            }
-            else if (i == 3)
-            {
-                radioButton7.Enabled = false;
-            }
-            else if (i == 4)
-            {
-                radioButton8.Enabled = false;
-            }
+        //start a chat without needing contents of form 1
+        public void startchat(chatinfo co)
+        {
+           
+                //sets up form2 (actual chatroom)
+                ci.un = co.un;
+                ci.portnum = co.portnum;
+                ci.portnum2 = co.portnum2;
+
+                Form2 f2 = new Form2(ci);
+
+                f2.ci = ci;
+
+                f2.Show();
+            
         }
 
-        private void rbcheck1(object sender, EventArgs e)
-        {
-            ci.us = 1;
-            buttonreset(1);       
-        }
-
-        private void rbcheck2(object sender, EventArgs e)
-        {
-            ci.us = 2;
-            buttonreset(2);
-        }
-
-        private void rbcheck3(object sender, EventArgs e)
-        {
-            ci.us = 3;
-            buttonreset(3);
-        }
-
-        private void rbcheck4(object sender, EventArgs e)
-        {
-            ci.us = 4;
-            buttonreset(4);
-        }
-
-        private void cn1(object sender, EventArgs e)
-        {
-            ci.con = 1;
-        }
-
-        private void cn2(object sender, EventArgs e)
-        {
-            ci.con = 2;
-        }
-
-        private void cn3(object sender, EventArgs e)
-        {
-            ci.con = 3;
-        }
-
-        private void cn4(object sender, EventArgs e)
-        {
-            ci.con = 4;
-        }
-
-        private void portchange(object sender, EventArgs e)
-        {
-            ci.portnum = portui.Value;
-        }
-
+        //poor naming, joins the server with Tcp
         private void refresh(object sender, EventArgs e)
         {
             s = new UDPSocket();
             s.f1 = this;
-            s.ClientTcp("127.0.0.3", 3399);
+            //s.ClientTcp("64.72.2.57", 3399);
+            s.ClientTcp(ad.addr, ad.serverport);
+            msg.ID = TB.Text;
             
-            s.Send(TB.Text + '\0');
+            string b = JsonSerializer.Serialize(msg);
+            //string c = TB.Text + '/0';
+            s.Send(TB.Text);
         }
 
         private void requestUser(object sender, EventArgs e)
@@ -160,15 +119,29 @@ namespace chatroom
             s.Send(UserBox.SelectedItem.ToString());
             Adduser(UserBox.SelectedItem.ToString());
         }
-
+        
+        //send the server a yes so that the clients and connect
         private void YesButton(object sender, EventArgs e)
         {
             s.Send('Y'.ToString());
         }
 
+        //sends the contents of the text box to the server for the user name
         private void bp(object sender, EventArgs e)
         {
-            s.Send(messbox.Text + '\0');
+            msg.ID = TB.Text;
+            msg.buf = messbox.Text;
+            //msg.partnerID
+            //var i = new JsonSerializer();
+           
+            string b = JsonSerializer.Serialize(msg.ID);
+            s.Send(TB.Text);
+        }
+
+        private void usersub(object sender, EventArgs e)
+        {
+            string b = JsonSerializer.Serialize(TB.Text);
+            s.Send(b);
         }
     }
 }

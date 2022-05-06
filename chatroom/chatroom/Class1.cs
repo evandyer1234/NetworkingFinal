@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-
+//https://gist.github.com/darkguy2008/413a6fea3a5b4e67e5e0d96f750088a9
 namespace chatroom
 {
+    struct ad
+    {
+        //public const string addr = "127.0.0.3";
+        public const string addr = "64.72.2.57";
+        public const int serverport = 3399;
+    }
     public class UDPSocket
     {
         public Socket _socket;
@@ -16,6 +22,7 @@ namespace chatroom
         private State state = new State();
         public EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
         private AsyncCallback recv = null;
+
         public Form2 f2;
         public Form1 f1;
 
@@ -36,7 +43,7 @@ namespace chatroom
         {
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket.Connect(IPAddress.Parse(address), port);
-            Receive();
+           // Receive();
         }
         public void ClientTcp(string address, int port)
         {
@@ -54,6 +61,7 @@ namespace chatroom
                 int bytes = _socket.EndSend(ar);               
             }, state);
         }
+
         private void Receive()
         {
             _socket.BeginReceiveFrom(state.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv = (ar) =>
@@ -61,21 +69,17 @@ namespace chatroom
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
                 _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
-                //Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
+               
                 if (f2 != null)
                 {
                     f2.AddMessage(Encoding.ASCII.GetString(so.buffer, 0, bytes));
                 }
                 else if (f1 != null)
-                {
-                    
+                {                   
                     f1.Adduser(Encoding.ASCII.GetString(so.buffer, 0, bytes));
                     //f1.Adduser(bytes.ToString());
                 }
             }, state);
         }
-
-
-
     }
 }

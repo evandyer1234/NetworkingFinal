@@ -11,55 +11,44 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-//https://gist.github.com/darkguy2008/413a6fea3a5b4e67e5e0d96f750088a9
+
 namespace chatroom
 {
     public partial class Form2 : Form
     {
-
         public chatinfo ci;
-
-        
+ 
         UDPSocket s;
         UDPSocket c;
         //UdpClient udpClient;
-        public IPEndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
 
         public Form2(chatinfo ch)
         {
             InitializeComponent();
 
             s = new UDPSocket();
-           
             s.f2 = this;
+            s.Server(ad.addr, decimal.ToInt32(ch.portnum2));
+
             //udpClient = new UdpClient(decimal.ToInt32(ch.portnum));
-            
-            
-                
-                //s.Server("127.0.0.1", decimal.ToInt32(ci.portnum));
-            s.Server("127.0.0.3", decimal.ToInt32(ch.portnum2));
-            
-            c = new UDPSocket();
-            
+            c = new UDPSocket();      
             c.f2 = this;
-            c.Client("127.0.0.3", decimal.ToInt32(ch.portnum));
-            
-            backgroundWorker1.RunWorkerAsync();
-            
+            c.Client(ad.addr, decimal.ToInt32(ch.portnum));            
         }
 
+        //sends a message to the server and adds the message to the users window
         private void EnterPressed(object sender, EventArgs e)
         {
             if (tb.Text != "")
             {
-                //var b = {"ID" : ci.un.ToString(), "msg" : }
                 c.Send(ci.un + ": " + tb.Text);
+
                 AddMessage(ci.un + ": " + tb.Text);
                 tb.Text = "";
             }
         }
 
-        //should send the message to the server and display it for both clients 
+        // adds a message to the ListBox 
         public void AddMessage(string p)
         {
             if (p != "")
@@ -72,22 +61,6 @@ namespace chatroom
         {          
             s._socket.Close();
             this.Close();   
-        }
-
-        private void bg_work(object sender, DoWorkEventArgs e)
-        {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            //e.Result = messagetest();
-            
-            //Byte[] receiveBytes = udpClient.Receive(ref epFrom);
-            //string returnData = Encoding.ASCII.GetString(receiveBytes);
-            //AddMessage(returnData);
-        }
-
-        private void bg_reset(object sender, RunWorkerCompletedEventArgs e)
-        {
-            
-            backgroundWorker1.RunWorkerAsync();
         }
     }
 }

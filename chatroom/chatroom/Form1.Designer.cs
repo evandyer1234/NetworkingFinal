@@ -31,31 +31,25 @@ namespace chatroom
         {
             this.submit = new System.Windows.Forms.Button();
             this.testlabel = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TB = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.port2 = new System.Windows.Forms.NumericUpDown();
-            this.hostbox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.portui = new System.Windows.Forms.NumericUpDown();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.UserBox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.messbox = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.port2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // submit
@@ -77,69 +71,15 @@ namespace chatroom
             this.testlabel.Size = new System.Drawing.Size(0, 15);
             this.testlabel.TabIndex = 4;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.BackColor = System.Drawing.SystemColors.WindowText;
-            this.radioButton1.Checked = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton1.Location = new System.Drawing.Point(6, 32);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(57, 19);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "User 1";
-            this.radioButton1.UseVisualStyleBackColor = false;
-            this.radioButton1.Click += new System.EventHandler(this.rbcheck1);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton2.Location = new System.Drawing.Point(6, 57);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(57, 19);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.Text = "User 2";
-            this.radioButton2.UseVisualStyleBackColor = false;
-            this.radioButton2.Click += new System.EventHandler(this.rbcheck2);
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton3.Location = new System.Drawing.Point(6, 81);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(57, 19);
-            this.radioButton3.TabIndex = 7;
-            this.radioButton3.Text = "User 3";
-            this.radioButton3.UseVisualStyleBackColor = false;
-            this.radioButton3.Click += new System.EventHandler(this.rbcheck3);
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton4.Location = new System.Drawing.Point(6, 106);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(57, 19);
-            this.radioButton4.TabIndex = 8;
-            this.radioButton4.Text = "User 4";
-            this.radioButton4.UseVisualStyleBackColor = false;
-            this.radioButton4.Click += new System.EventHandler(this.rbcheck4);
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox1.Controls.Add(this.port2);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.TB);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.portui);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(46, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(171, 206);
@@ -152,7 +92,7 @@ namespace chatroom
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(6, 159);
+            this.label1.Location = new System.Drawing.Point(6, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 15);
             this.label1.TabIndex = 11;
@@ -160,33 +100,26 @@ namespace chatroom
             // 
             // TB
             // 
-            this.TB.Location = new System.Drawing.Point(6, 177);
+            this.TB.Location = new System.Drawing.Point(6, 39);
             this.TB.Name = "TB";
             this.TB.Size = new System.Drawing.Size(159, 23);
             this.TB.TabIndex = 10;
             this.TB.Text = "DefaultUser";
             // 
-            // groupBox2
+            // label4
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox2.Controls.Add(this.port2);
-            this.groupBox2.Controls.Add(this.hostbox);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.portui);
-            this.groupBox2.Controls.Add(this.radioButton5);
-            this.groupBox2.Controls.Add(this.radioButton8);
-            this.groupBox2.Controls.Add(this.radioButton6);
-            this.groupBox2.Controls.Add(this.radioButton7);
-            this.groupBox2.Location = new System.Drawing.Point(275, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(171, 260);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Connect To";
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(6, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Partner Port";
             // 
             // port2
             // 
-            this.port2.Location = new System.Drawing.Point(6, 196);
+            this.port2.Location = new System.Drawing.Point(6, 147);
             this.port2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -206,22 +139,12 @@ namespace chatroom
             0,
             0});
             // 
-            // hostbox
-            // 
-            this.hostbox.AutoSize = true;
-            this.hostbox.Location = new System.Drawing.Point(6, 225);
-            this.hostbox.Name = "hostbox";
-            this.hostbox.Size = new System.Drawing.Size(100, 19);
-            this.hostbox.TabIndex = 13;
-            this.hostbox.Text = "Are You Host?";
-            this.hostbox.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(6, 159);
+            this.label2.Location = new System.Drawing.Point(6, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 15);
             this.label2.TabIndex = 12;
@@ -229,7 +152,7 @@ namespace chatroom
             // 
             // portui
             // 
-            this.portui.Location = new System.Drawing.Point(6, 178);
+            this.portui.Location = new System.Drawing.Point(6, 92);
             this.portui.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -248,76 +171,20 @@ namespace chatroom
             0,
             0,
             0});
-            this.portui.ValueChanged += new System.EventHandler(this.portchange);
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton5.Enabled = false;
-            this.radioButton5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton5.Location = new System.Drawing.Point(6, 32);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(57, 19);
-            this.radioButton5.TabIndex = 5;
-            this.radioButton5.Text = "User 1";
-            this.radioButton5.UseVisualStyleBackColor = false;
-            this.radioButton5.Click += new System.EventHandler(this.cn1);
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton8.Location = new System.Drawing.Point(6, 106);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(57, 19);
-            this.radioButton8.TabIndex = 8;
-            this.radioButton8.Text = "User 4";
-            this.radioButton8.UseVisualStyleBackColor = false;
-            this.radioButton8.Click += new System.EventHandler(this.cn4);
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton6.Checked = true;
-            this.radioButton6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton6.Location = new System.Drawing.Point(6, 57);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(57, 19);
-            this.radioButton6.TabIndex = 6;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "User 2";
-            this.radioButton6.UseVisualStyleBackColor = false;
-            this.radioButton6.Click += new System.EventHandler(this.cn2);
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.radioButton7.Location = new System.Drawing.Point(6, 81);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(57, 19);
-            this.radioButton7.TabIndex = 7;
-            this.radioButton7.Text = "User 3";
-            this.radioButton7.UseVisualStyleBackColor = false;
-            this.radioButton7.Click += new System.EventHandler(this.cn3);
             // 
             // UserBox
             // 
             this.UserBox.FormattingEnabled = true;
             this.UserBox.ItemHeight = 15;
-            this.UserBox.Location = new System.Drawing.Point(505, 24);
+            this.UserBox.Location = new System.Drawing.Point(11, 21);
             this.UserBox.Name = "UserBox";
-            this.UserBox.Size = new System.Drawing.Size(252, 169);
+            this.UserBox.Size = new System.Drawing.Size(181, 169);
             this.UserBox.TabIndex = 11;
             this.UserBox.DoubleClick += new System.EventHandler(this.requestUser);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(505, 215);
+            this.button1.Location = new System.Drawing.Point(11, 216);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -327,7 +194,7 @@ namespace chatroom
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(505, 256);
+            this.button2.Location = new System.Drawing.Point(11, 254);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 13;
@@ -337,14 +204,14 @@ namespace chatroom
             // 
             // messbox
             // 
-            this.messbox.Location = new System.Drawing.Point(46, 366);
+            this.messbox.Location = new System.Drawing.Point(11, 303);
             this.messbox.Name = "messbox";
             this.messbox.Size = new System.Drawing.Size(100, 23);
             this.messbox.TabIndex = 14;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(180, 366);
+            this.button3.Location = new System.Drawing.Point(126, 303);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 15;
@@ -352,29 +219,65 @@ namespace chatroom
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.bp);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.AutoSize = true;
+            this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.UserBox);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.messbox);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Location = new System.Drawing.Point(592, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(207, 348);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Connect Server";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 285);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 15);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Message";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(142, 244);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.usersub);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.messbox);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.UserBox);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(852, 515);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.testlabel);
             this.Controls.Add(this.submit);
+            this.MaximumSize = new System.Drawing.Size(868, 868);
+            this.MinimumSize = new System.Drawing.Size(635, 39);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.port2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portui)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,27 +286,21 @@ namespace chatroom
         #endregion
         private System.Windows.Forms.Button submit;
         private System.Windows.Forms.Label testlabel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TB;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.NumericUpDown portui;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox hostbox;
         private System.Windows.Forms.NumericUpDown port2;
         private System.Windows.Forms.ListBox UserBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox messbox;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label4;
     }
 }
 

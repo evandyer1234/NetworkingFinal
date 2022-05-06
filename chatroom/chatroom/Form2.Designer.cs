@@ -35,7 +35,6 @@ namespace chatroom
             this.tb = new System.Windows.Forms.TextBox();
             this.enterbutton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // LB
@@ -78,11 +77,6 @@ namespace chatroom
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Leavebtn);
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg_work);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bg_reset);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -106,6 +100,5 @@ namespace chatroom
         private System.Windows.Forms.TextBox tb;
         private System.Windows.Forms.Button enterbutton;
         private System.Windows.Forms.Button button1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
