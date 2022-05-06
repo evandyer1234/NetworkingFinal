@@ -59,16 +59,23 @@ int main()
 
 		return 1;
 	}
+
+
+
+	//Gets the user's ID, and sends it
+
 	int pl = 0;
 	cout << "Enter an id to go by: ";
 	cin.getline(msg.ID, BUF_SIZE);
-	
 	char* p = (char*)&msg;
+	send(ClientSocket, p, (BUF_SIZE * 3), 0);//Just user ID
 
-	send(ClientSocket, p, (BUF_SIZE * 3), 0);
+
+
 
 	char list[BUF_SIZE * 10];
-	int a = recv(ClientSocket, list, BUF_SIZE * 10, 0);
+	int a = recv(ClientSocket, list, BUF_SIZE * 10, 0);//Receives user list
+
 	if (list[0] != NULL) {
 		cout << "All active users:" << endl;
 		printf("%s", list);
@@ -79,9 +86,9 @@ int main()
 			cin.getline(msg.partnerID, BUF_SIZE);
 			//Send a message, server returns whether it was valid, if so leave loop
 			char* p = (char*)&msg;
-			send(ClientSocket, p, (BUF_SIZE * 3), 0);
+			send(ClientSocket, p, (BUF_SIZE * 3), 0);//Send User ID and Partner ID
 			char r[20];
-			recv(ClientSocket, r, sizeof(r), 0);
+			recv(ClientSocket, r, sizeof(r), 0);//Recieve chat request response
 			if (r[0] == 'F') {
 				cout << "The user either rejected your request or doesn't exist." << endl;
 			}
@@ -96,17 +103,20 @@ int main()
 	}
 	
 	
-	//partner loop
+	//Waiting for chat request loop
 	while (pl != 1) {
 		char r[400];
-		recv(ClientSocket, r, sizeof(r), 0);
-		printf("%s", r);
+		recv(ClientSocket, r, sizeof(r), 0);//Recieve chat request
+		DATA* n = (DATA*)r;
+		printf("%s", n->buf);
+		printf("%s", n->ID);
 		cout << endl;
-		char response[50];
-		cin.getline(response, 50);
-		send(ClientSocket, response, sizeof(response), 0);
-		if (response[0] == 'Y') {
+		cin.getline(n->buf, BUF_SIZE);
+		char* response = (char*)&n;
+		send(ClientSocket, response, BUF_SIZE * 3, 0);//Sends response
+		if (n->buf[0] == 'Y') {
 			pl++;
+			strcpy_s(msg.partnerID, n->ID);
 		}
 	}
 

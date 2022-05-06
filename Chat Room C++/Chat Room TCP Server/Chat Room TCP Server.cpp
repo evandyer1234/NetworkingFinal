@@ -224,10 +224,15 @@ void client_thread(PSOCKET_INFO pClient)
 		<< " on port " << ntohs(pClient->addr.sin_port) << std::endl;
 
 	char p[BUF_SIZE * 3];
+	char p2[BUF_SIZE * 3];
 
 	//buf[nRecvBytes] = '\0';
 
 	std::vector<idpair>::iterator _it2;
+
+
+
+	//Sends a list of users based on all idpairs
 
 	std::string list;
 
@@ -237,42 +242,61 @@ void client_thread(PSOCKET_INFO pClient)
 	}
 	char* pc = const_cast<char*>(list.c_str());
 
-	send(pClient->socket, pc, BUF_SIZE * 10, 0);
+	send(pClient->socket, pc, BUF_SIZE * 10, 0);//Sends user list
 
-	int nRecvBytes = recv(pClient->socket, p, sizeof(p), 0);
-	
+
+	//Add new user's ID
+
+	int nRecvBytes = recv(pClient->socket, p, sizeof(p), 0);//Just user ID
 	DATA* dp = (DATA*)p;
 	SOCKET partnerSocket;
 	pairs.push_back(idpair{ pClient->socket, dp->ID });
 
+
+
 	int c = 0;
 	while (c != 1) {
-		recv(pClient->socket, p, sizeof(p), 0);
-		DATA* dp = (DATA*)p;
-		for (_it2 = pairs.begin(); _it2 != pairs.end(); _it2++)
-		{
-			if (dp->partnerID == _it2->id) {
-				std::string request = "Would you like to chat with " + (std::string)dp->ID + "? (Y/N)";
-				char* cr = const_cast<char*>(request.c_str());
-				send(_it2->socket, cr, 400, 0);
-				char response[50];
-				std::cout << "Waiting" << std::endl;
-				recv(_it2->socket, response, sizeof(response), 0);
-				std::cout << "Received";
-				if (response[0] == 'Y') {
+		recv(pClient->socket, p2, BUF_SIZE * 3, 0);//Receive User and Partner ID OR Response to chat request
+		dp = (DATA*)p2;
+		printf("%s", dp->buf);
+		if (dp->buf[0] != 'Y' || dp->buf[0] != 'N') {
+			for (_it2 = pairs.begin(); _it2 != pairs.end(); _it2++)
+			{
+				if (dp->partnerID == _it2->id) {
+					DATA m;
+					strcpy_s(m.buf, "Would you like to chat with this user? (Y/N) ");
+					strcpy_s(m.ID, dp->ID);
+					char* cr = (char*)&m;
+					send(_it2->socket, cr, 400, 0);//Send chat request
+					char response[50];
+					std::cout << "Waiting" << std::endl;
+					recv(_it2->socket, response, sizeof(response), 0);//Receives chat request response
+					std::cout << "Received";
+					if (response[0] == 'Y') {
+						partnerSocket = _it2->socket;
+						char s[] = "Success";
+						send(pClient->socket, s, sizeof(s), 0);//Sends success
+						c++;
+					}
+				}
+			}
+		}
+		else {
+			c++;
+			std::cout << "Chat request skipped";
+			for (_it2 = pairs.begin(); _it2 != pairs.end(); _it2++)
+			{
+				if (dp->ID == _it2->id) {
 					partnerSocket = _it2->socket;
-					char s[] = "Success";
-					send(pClient->socket, s, sizeof(s), 0);
-					c++;
 				}
 			}
 		}
 		if (c == 0) {
 			char f[] = "Failed";
-			send(pClient->socket, f, sizeof(f), 0);
+			send(pClient->socket, f, sizeof(f), 0);//Sends failure
 		}
 	}
-
+	std::cout << ntohs(pClient->addr.sin_port) << " Partner selected" << std::endl;
 
 	/*
 	//send Client list
@@ -313,7 +337,7 @@ void client_thread(PSOCKET_INFO pClient)
 			if (nRecvBytes > 0)
 			{
 				char* d = (char*)&dp;
-				send(partnerSocket, d, nRecvBytes, 0); // echo 
+				send(partnerSocket, d, nRecvBytes, 0); // send to partner
 
 				if (strlen(dp->buf) == 1 && toupper(dp->buf[0]) == 'Q' )
 				{
